@@ -7,7 +7,6 @@ import {
   Easing,
 } from "react-native";
 import { Href, Slot, usePathname, useRouter } from "expo-router";
-import { BlurView } from "expo-blur";
 
 import {
   Banknote,
@@ -149,9 +148,15 @@ function TabBarItem({ onPress, Icon, isFocused }: TabBarItemProps) {
 
 export default function TabLayout() {
   return (
-    <View style={{ height: "100%", flexDirection: "column" }}>
-      <ScrollView style={{ flex: 1 }}>
-        <View style={{ marginBottom: 90 }}>
+    <View
+      style={{
+        height: "100%",
+        flexDirection: "column",
+        backgroundColor: "white",
+      }}
+    >
+      <ScrollView style={{ flex: 1, padding: 10 }}>
+        <View style={{ flex: 1, marginBottom: 90 }}>
           <Slot />
         </View>
       </ScrollView>
