@@ -14,28 +14,23 @@ export default async function migrateDbIfNeeded() {
 
   if (currentDbVersion === 0) {
     await db.execAsync(`
-PRAGMA jounral_mode = 'wal';
 CREATE TABLE accounts (id TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL);
       `);
-
-    // TEST DATA
-    await db.runAsync(
-      "INSERT INTO accounts (id, name) VALUES (?, ?)",
-      "1",
-      "Artem"
-    );
-    await db.runAsync(
-      "INSERT INTO accounts (id, name) VALUES (?, ?)",
-      "2",
-      "Max"
-    );
 
     currentDbVersion = 1;
   }
 
-  // if (currentVersion === 1) {
-  //   More migrations
-  // }
+  if (currentDbVersion === 1) {
+    await db.execAsync(`
+      CREATE TABLE transactions (
+        id TEXT PRIMARY KEY NOT NULL,
+        amount REAL NOT NULL,
+        accountId TEXT NOT NULL,
+        timestamp TEXT NOT NULL
+      `);
+
+    currentDbVersion = 2;
+  }
 
   await db.execAsync(`PRAGMA user_version = ${DATABASE_VERSION}`);
 }

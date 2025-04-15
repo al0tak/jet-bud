@@ -1,5 +1,5 @@
 import { queryClient } from "@/context/QueryClient";
-import migrateDbIfNeeded from "@/db/migrateDbIfNeeded";
+import migrateDbIfNeeded from "@/queries/migrateDbIfNeeded";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import { useEffect } from "react";

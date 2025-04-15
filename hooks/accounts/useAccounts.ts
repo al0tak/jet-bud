@@ -1,4 +1,4 @@
-import { getDb } from "@/db/db";
+import { getDb } from "@/queries/db";
 import { Account } from "@/types/account";
 import { useQuery } from "@tanstack/react-query";
 
