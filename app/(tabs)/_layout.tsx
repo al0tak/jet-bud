@@ -10,6 +10,7 @@ import { Href, Slot, usePathname, useRouter } from "expo-router";
 
 import {
   Banknote,
+  ChartArea,
   Home,
   LucideIcon,
   Search,
@@ -26,19 +27,14 @@ type TabBarItemInfo = {
 function TabBar() {
   const tabBarItemInfos: TabBarItemInfo[] = [
     {
-      title: "Home",
-      pathname: "/",
-      icon: Home,
-    },
-    {
-      title: "Search",
-      pathname: "/search",
-      icon: Search,
-    },
-    {
       title: "Accounts",
-      pathname: "/accounts",
+      pathname: "/",
       icon: Banknote,
+    },
+    {
+      title: "Stats",
+      pathname: "/stats",
+      icon: ChartArea,
     },
     {
       title: "Settings",
