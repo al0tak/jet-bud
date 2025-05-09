@@ -8,4 +8,6 @@ export type Transaction = {
   amount: number;
   accountId: string;
   timestamp: string;
+  name: string;
+  description: string;
 };

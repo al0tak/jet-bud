@@ -14,8 +14,11 @@ export default async function migrateDbIfNeeded() {
 
   if (currentDbVersion === 0) {
     await db.execAsync(`
-CREATE TABLE accounts (id TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL);
-      `);
+      CREATE TABLE accounts (
+        id TEXT PRIMARY KEY NOT NULL,
+        name TEXT NOT NULL
+      );
+    `);
 
     currentDbVersion = 1;
   }
@@ -27,9 +30,17 @@ CREATE TABLE accounts (id TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL);
         amount REAL NOT NULL,
         accountId TEXT NOT NULL,
         timestamp TEXT NOT NULL
-      `);
+      );
+    `);
 
     currentDbVersion = 2;
+  }
+
+  if (currentDbVersion === 2) {
+    await db.execAsync(`
+      UPDATE transactions ADD COLUMN name TEXT;
+      UPDATE transactions ADD COLUMN description TEXT;
+    `);
   }
 
   await db.execAsync(`PRAGMA user_version = ${DATABASE_VERSION}`);
