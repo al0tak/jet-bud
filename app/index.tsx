@@ -3,11 +3,12 @@ import React from "react";
 import { SettingsIcon, RocketIcon } from "lucide-react-native";
 import { router } from "expo-router";
 import { useStore } from "@/hooks/useStore";
+import AccountCardList from "@/components/AccountCardList/AccountCardList";
 const index = () => {
   const accounts = useStore(({ accounts }) => accounts);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white", padding: 10 }}>
+    <View style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <RocketIcon size={30} stroke="black" />
@@ -18,9 +19,8 @@ const index = () => {
           <SettingsIcon size={34} stroke="black" />
         </Pressable>
       </View>
-      {accounts.map((account) => (
-        <Text key={account.id}>{account.name}</Text>
-      ))}
+
+      <AccountCardList accounts={accounts} />
     </View>
   );
 };

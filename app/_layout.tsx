@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native";
 
 export default function RootLayout() {
   const initStore = useStore(({ initStore }) => initStore);
+
   useEffect(() => {
     migrateDbIfNeeded();
     initStore();

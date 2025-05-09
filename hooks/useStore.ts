@@ -2,6 +2,7 @@ import { getAccounts } from "@/queries/accounts/getAccounts";
 import { getTransactions } from "@/queries/transactions/getTransactions";
 import { Account, Transaction } from "@/types";
 import { create } from "zustand";
+import { mockAccounts } from "@/mock/accounts";
 
 type StoreState = {
   accounts: Account[];
@@ -19,8 +20,9 @@ export const useStore = create<StoreState>((set) => ({
   accounts: [],
   transactions: [],
   initStore: async () => {
-    const accounts = await getAccounts();
-    set({ accounts });
+    const dbAccounts = await getAccounts();
+    const allAccounts = [...dbAccounts, ...mockAccounts];
+    set({ accounts: allAccounts });
 
     const transactions = await getTransactions();
     set({ transactions });
