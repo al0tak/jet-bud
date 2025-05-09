@@ -20,7 +20,15 @@ const index = () => {
         </Pressable>
       </View>
 
-      <AccountCardList accounts={accounts} />
+      <View>
+        <AccountCardList accounts={accounts} />
+        <Pressable
+          style={{ padding: 10 }}
+          onPress={() => router.push("/accounts/accounts")}
+        >
+          <Text>See all accounts...</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
